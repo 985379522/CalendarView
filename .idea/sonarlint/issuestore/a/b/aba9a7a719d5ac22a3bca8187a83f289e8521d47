@@ -1,0 +1,16 @@
+
+Z
+java:S3358c"DExtract this nested ternary operation into an independent statement.(Ã†öÎ
+V
+java:S2184o"ACast one of the operands of this addition operation to a "float".(ßÅ€
+V
+java:S2184o"ACast one of the operands of this addition operation to a "float".(ßÅ€
+V	java:S125P"<This block of commented-out lines of code should be removed.(ªÌÓ‹ùÿÿÿÿ
+h
+java:S3776V"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(¼¦µÈ
+Y
+java:S2184o"DCast one of the operands of this subtraction operation to a "float".(ßÅ€
+_
+java:S3358j"DExtract this nested ternary operation into an independent statement.(ÃÜÀØýÿÿÿÿ
+Y
+java:S2184o"DCast one of the operands of this subtraction operation to a "float".(ßÅ€

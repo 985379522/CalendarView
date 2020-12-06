@@ -82,6 +82,12 @@ public class CustomActivity extends BaseActivity implements
             @Override
             public void onClick(View v) {
                 mCalendarView.scrollToCurrent();
+
+                //这里出现了一个addSchemeDate，和其他地方常用到的setSchemeDate有所差别
+                //set是将CalendarView中this.mDelegate.mSchemeDatesMap设置为传入的HashMap
+                //而add是将传入的HashMap用于update this.mDelegate.mSchemeDatesMap，在其后新增数据
+                //若add发现this.mDelegate.mSchemeDatesMap为空，则会新建一个HashMap
+
                 //mCalendarView.addSchemeDate(getSchemeCalendar(2019, 6, 1, 0xFF40db25, "假"));
 //                int year = 2019;
 //                int month = 6;
@@ -168,6 +174,8 @@ public class CustomActivity extends BaseActivity implements
         calendar.setDay(day);
         calendar.setSchemeColor(color);//如果单独标记颜色、则会使用这个颜色
         calendar.setScheme(text);
+        //这里相比Colorful样式，多塞入了三个Scheme：一个空，一个“假”，一个“节”
+        //查看全部样式布局，有的加入了，有的没加入，暂时不知道有什么区别，或许需要联系实际应用情况
         calendar.addScheme(new Calendar.Scheme());
         calendar.addScheme(0xFF008800, "假");
         calendar.addScheme(0xFF008800, "节");
@@ -189,6 +197,7 @@ public class CustomActivity extends BaseActivity implements
         mTextLunar.setText(calendar.getLunar());
         mYear = calendar.getYear();
 
+        //向log输出ERROR信息-某日被选择
         Log.e("onDateSelected", "  -- " + calendar.getYear() +
                 "  --  " + calendar.getMonth() +
                 "  -- " + calendar.getDay() +

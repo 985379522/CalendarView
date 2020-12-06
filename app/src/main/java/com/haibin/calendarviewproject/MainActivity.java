@@ -37,6 +37,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+//主界面，也是一开始进入的页面
 public class MainActivity extends BaseActivity implements
         CalendarView.OnCalendarSelectListener,
         CalendarView.OnCalendarLongClickListener,
@@ -63,6 +64,7 @@ public class MainActivity extends BaseActivity implements
     private int mYear;
     CalendarLayout mCalendarLayout;
 
+    //AlertDialog-(弹出式)对话框，置顶于所有界面元素之上，能够屏蔽掉其他控件的交互能力，因此一般用于提示一些非常重要的内容或者警告信息。
     private AlertDialog mMoreDialog;
 
     private AlertDialog mFuncDialog;
@@ -97,12 +99,14 @@ public class MainActivity extends BaseActivity implements
                 mTextMonthDay.setText(String.valueOf(mYear));
             }
         });
+        //动态更新点击监听器
         findViewById(R.id.iv_more).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mMoreDialog == null) {
                     mMoreDialog = new AlertDialog.Builder(MainActivity.this)
                             .setTitle(R.string.list_dialog_title)
+                            //此处的响应listener为该类的Onclick函数
                             .setItems(R.array.list_dialog_items, MainActivity.this)
                             .create();
                 }
@@ -110,6 +114,7 @@ public class MainActivity extends BaseActivity implements
             }
         });
 
+        //功能支持响应
         final DialogInterface.OnClickListener listener =
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -154,12 +159,14 @@ public class MainActivity extends BaseActivity implements
                     }
                 };
 
+        //功能支持点击监听器
         findViewById(R.id.iv_func).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mFuncDialog == null) {
                     mFuncDialog = new AlertDialog.Builder(MainActivity.this)
                             .setTitle(R.string.func_dialog_title)
+                            //此处的响应listener为上面定义的listener
                             .setItems(R.array.func_dialog_items, listener)
                             .create();
                 }
@@ -263,6 +270,7 @@ public class MainActivity extends BaseActivity implements
         //可自行测试性能差距
         //mCalendarView.setSchemeDate(schemes);
 
+        //不同布局的点击监听器
         findViewById(R.id.ll_flyme).setOnClickListener(this);
         findViewById(R.id.ll_simple).setOnClickListener(this);
         findViewById(R.id.ll_range).setOnClickListener(this);
@@ -278,6 +286,7 @@ public class MainActivity extends BaseActivity implements
         findViewById(R.id.ll_full).setOnClickListener(this);
     }
 
+    //动态更新的响应
     @Override
     public void onClick(DialogInterface dialog, int which) {
         switch (which) {
@@ -314,6 +323,7 @@ public class MainActivity extends BaseActivity implements
         }
     }
 
+    //点击进入不同布局的响应
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -375,6 +385,7 @@ public class MainActivity extends BaseActivity implements
 
     @Override
     public void onCalendarOutOfRange(Calendar calendar) {
+        //Toast是用于显示消息的一个窗口，会自动淡出
         Toast.makeText(this, String.format("%s : OutOfRange", calendar), Toast.LENGTH_SHORT).show();
     }
 
@@ -391,6 +402,7 @@ public class MainActivity extends BaseActivity implements
         if (isClick) {
             Toast.makeText(this, getCalendarText(calendar), Toast.LENGTH_SHORT).show();
         }
+        //以下均为日志记录
 //        Log.e("lunar "," --  " + calendar.getLunarCalendar().toString() + "\n" +
 //        "  --  " + calendar.getLunarCalendar().getYear());
         Log.e("onDateSelected", "  -- " + calendar.getYear() +
@@ -412,6 +424,7 @@ public class MainActivity extends BaseActivity implements
         Toast.makeText(this, "长按不选择日期\n" + getCalendarText(calendar), Toast.LENGTH_SHORT).show();
     }
 
+    //点击/长按显示的文本
     private static String getCalendarText(Calendar calendar) {
         return String.format("新历%s \n 农历%s \n 公历节日：%s \n 农历节日：%s \n 节气：%s \n 是否闰月：%s",
                 calendar.getMonth() + "月" + calendar.getDay() + "日",

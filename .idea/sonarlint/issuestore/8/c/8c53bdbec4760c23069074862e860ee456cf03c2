@@ -1,0 +1,18 @@
+
+V	java:S125"<This block of commented-out lines of code should be removed.(Ö™­ºùÿÿÿÿ
+V
+java:S2184N"@Cast one of the operands of this integer division to a "double".(§ùá¹
+s
+java:S3923L"]This conditional operation returns the same value whether the condition is "true" or "false".(ØÉĞ
+Z
+java:S3358R"DExtract this nested ternary operation into an independent statement.(Öôƒ¨
+V
+java:S2184G"@Cast one of the operands of this integer division to a "double".(€åÎ»
+Z
+java:S3358L"DExtract this nested ternary operation into an independent statement.(ØÉĞ
+h
+java:S3776A"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(’•âé
+s
+java:S3923R"]This conditional operation returns the same value whether the condition is "true" or "false".(Öôƒ¨
+V
+java:S2184S"@Cast one of the operands of this integer division to a "double".(€åÎ»

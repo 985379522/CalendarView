@@ -129,6 +129,7 @@ public class CustomWeekView extends WeekView {
     @SuppressWarnings("IntegerDivisionInFloatingPointContext")
     @Override
     protected void onDrawText(Canvas canvas, Calendar calendar, int x, boolean hasScheme, boolean isSelected) {
+        //除了覆写以外的唯一区别，cy和top的运算略有不同，同Colorful布局
         int cx = x + mItemWidth / 2;
         int cy = mItemHeight / 2;
         int top = -mItemHeight / 6;

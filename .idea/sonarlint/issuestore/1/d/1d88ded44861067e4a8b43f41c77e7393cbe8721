@@ -1,0 +1,21 @@
+
+g
+java:S3358È"DExtract this nested ternary operation into an independent statement.(ÃÜÀØıÿÿÿÿ8¢ÿÖœã.
+g
+java:S3358Ì"DExtract this nested ternary operation into an independent statement.(²ığÎûÿÿÿÿ8¢ÿÖœã.
+C
+java:S1185x"(Remove this method to simply inherit it.(ÕÆ¾ùıÿÿÿÿ
+^
+java:S2184½"@Cast one of the operands of this integer division to a "double".(øºÛ8¢ÿÖœã.
+c
+java:S2184Ã"@Cast one of the operands of this integer division to a "double".(“·§ùÿÿÿÿ8¢ÿÖœã.
+c
+java:S2184Ê"@Cast one of the operands of this integer division to a "double".(“·§ùÿÿÿÿ8¢ÿÖœã.
+p
+java:S3776•"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(¼¦µÈ8¢ÿÖœã.
+g
+java:S3358Ì"DExtract this nested ternary operation into an independent statement.(²ığÎûÿÿÿÿ8¢ÿÖœã.
+^
+java:S2184"ACast one of the operands of this addition operation to a "float".(Åş8¢ÿÖœã.
+a
+java:S2184"DCast one of the operands of this subtraction operation to a "float".(Åş8¢ÿÖœã.

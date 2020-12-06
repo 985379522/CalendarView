@@ -9,7 +9,7 @@ import com.haibin.calendarviewproject.base.activity.BaseActivity;
  * Only calendar
  * Created by haibin on 2019/6/12.
  */
-
+//基础的一个Activity框架
 public class CalendarActivity extends BaseActivity {
 
     public static void show(Context context) {

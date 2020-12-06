@@ -13,6 +13,8 @@ import com.haibin.calendarview.WeekView;
  * Created by huanghaibin on 2017/11/29.
  */
 
+//其与ColorfulMonthView大体一致，有一些绘制的坐标运算不同
+//暂且不知道其与MonthView的调用关系，什么时候调用MonthView，什么时候调用WeekView
 public class ColorfulWeekView extends WeekView {
 
     private int mRadius;

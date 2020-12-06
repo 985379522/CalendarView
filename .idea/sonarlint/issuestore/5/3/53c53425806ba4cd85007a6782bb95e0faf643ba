@@ -1,0 +1,80 @@
+
+J
+java:S1121°".Extract the assignment out of this expression.(å­ùÿÿÿÿ
+Q
+java:S1659"5Declare "mSelectedLunarTextColor" on a separate line.(øøÚêÿÿÿÿÿ
+J
+java:S1659Å"3Declare "mYearViewDayTextColor" on a separate line.(®ÈŸÑ
+I
+java:S1659Ğ"-Declare "mWeekBackground" on a separate line.(•À·Ôıÿÿÿÿ
+N
+java:S1659 "8Declare "mYearViewMonthPaddingRight" on a separate line.(İìö`
+J
+java:S1659¸"3Declare "mYearViewWeekTextSize" on a separate line.(ÃÓÁŞ
+C
+java:S1659‡",Declare "mWeekTextColor" on a separate line.(Ùœ½
+N
+java:S1659·"2Declare "mYearViewDayTextSize" on a separate line.(…ÀÅ¦ÿÿÿÿÿ
+B
+java:S1659—"&Declare "mMaxYear" on a separate line.(Šˆí´ùÿÿÿÿ
+G
+java:S1659Á"1Declare "mYearViewScrollable" on a separate line.(¡©ŒB
+M
+java:S1659ß"1Declare "mSelectedThemeColor" on a separate line.(îÛåÔúÿÿÿÿ
+I
+java:S1659Š"2Declare "mOtherMonthTextColor" on a separate line.(è‚ƒÊ
+R
+java:S1659È"6Declare "mYearViewCurDayTextColor" on a separate line.(Ş…¬ûùÿÿÿÿ
+G
+java:S1659"+Declare "mMaxYearMonth" on a separate line.(éÈ‘Úüÿÿÿÿ
+@
+java:S1659£")Declare "mMaxYearDay" on a separate line.(É¯‹
+E
+java:S1659ˆ".Declare "mSchemeTextColor" on a separate line.(ëëÁ
+S
+java:S1659›"7Declare "mSelectedEndRangeCalendar" on a separate line.(ÓôÙáûÿÿÿÿ
+I
+java:S1659"-Declare "mMaxSelectRange" on a separate line.(¿Ô’­øÿÿÿÿ
+O
+java:S1659¢"9Declare "mYearViewMonthPaddingBottom" on a separate line.(ğû³
+W	java:S125Û"<This block of commented-out lines of code should be removed.(ëÈ‚şøÿÿÿÿ
+G
+java:S1659Œ"0Declare "mSelectedTextColor" on a separate line.(ò˜¨™
+C
+java:S1659¨",Declare "mLunarTextSize" on a separate line.(©«åİ
+M
+java:S1659¡"6Declare "mYearViewMonthPaddingTop" on a separate line.(µº·Â
+N
+java:S1659"7Declare "mOtherMonthLunarTextColor" on a separate line.(ƒ„ëà
+M
+java:S1659¾"1Declare "mYearViewWeekHeight" on a separate line.(šï³úÿÿÿÿ
+P
+java:S1659É"4Declare "mYearViewWeekTextColor" on a separate line.(û†“îûÿÿÿÿ
+H
+java:S1659Ï"1Declare "mYearViewBackground" on a separate line.(¦®”¬
+P
+java:S2864à"4Iterate over the "entrySet" instead of the "keySet".(ëûÄşÿÿÿÿ
+R
+java:S1659Ç"6Declare "mYearViewSelectTextColor" on a separate line.(ËÖÆ½ùÿÿÿÿ
+B
+java:S1168ù"+Return an empty collection instead of null.(¥¹ï
+K
+java:S1659‹"4Declare "mCurrentMonthTextColor" on a separate line.(ÊïÌÚ
+M
+java:S1659À"1Declare "mWeekViewScrollable" on a separate line.(°Ì¦øÿÿÿÿ
+R
+java:S1659Æ"6Declare "mYearViewSchemeTextColor" on a separate line.(èùûÿÿÿÿ
+K
+java:S1659"5Declare "mCurMonthLunarTextColor" on a separate line.(Œ­n
+N
+java:S1659˜"2Declare "mYearViewPaddingLeft" on a separate line.(û°úÿÿÿÿ
+E
+java:S1121©".Extract the assignment out of this expression.(îÎââ
+b
+java:S2184€	"FCast one of the operands of this multiplication operation to a "long".(»ğàÿÿÿÿÿ
+J
+java:S1659†"3Declare "mCurDayLunarTextColor" on a separate line.(ˆ¹‘ù
+J
+java:S1659‰"3Declare "mSchemeLunarTextColor" on a separate line.(Áˆş·
+O
+java:S1659™"3Declare "mYearViewPaddingRight" on a separate line.(şŞà­ÿÿÿÿÿ

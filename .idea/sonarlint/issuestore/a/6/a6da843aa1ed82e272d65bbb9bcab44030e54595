@@ -1,0 +1,9 @@
+
+U
+java:S1155ƒ">Use isEmpty() to check whether the collection is empty or not.(‹®×¹
+c	java:S119"IRename this generic name to match the regular expression '^[A-Z][0-9]?$'.(ÒÎˆÖûÿÿÿÿ
+c	java:S119"IRename this generic name to match the regular expression '^[A-Z][0-9]?$'.(ÒÎˆÖûÿÿÿÿ
+J
+java:S2864I"4Iterate over the "entrySet" instead of the "keySet".(§Œ
+O
+java:S2864u"4Iterate over the "entrySet" instead of the "keySet".(³÷øúÿÿÿÿ

@@ -1,0 +1,28 @@
+
+Q	java:S125U"<This block of commented-out lines of code should be removed.(«ÔÀ
+R	java:S125Š"<This block of commented-out lines of code should be removed.(ı»–‚
+h
+java:S3457 "Q%n should be used in place of \n to produce the platform-specific line separator.(¶Å€Ô
+P
+java:S1854Â"9Remove this useless assignment to local variable "month".(ÙÆœş
+m
+java:S3457”"Q%n should be used in place of \n to produce the platform-specific line separator.(·ÎÖ©ûÿÿÿÿ
+W	java:S125‹"<This block of commented-out lines of code should be removed.(Ú¨íäıÿÿÿÿ
+E
+java:S1481Á")Remove this unused "year" local variable.(áŒí øÿÿÿÿ
+b
+java:S1192Œ"FDefine a constant instead of duplicating this literal "  -- " 3 times.(©™Ùˆûÿÿÿÿ
+W	java:S110("=This class has 10 parents which is greater than 5 authorized.(Ë¹›Œÿÿÿÿÿ
+T
+java:S1854Á"8Remove this useless assignment to local variable "year".(áŒí øÿÿÿÿ
+A
+java:S1481Â"*Remove this unused "month" local variable.(ÙÆœş
+^
+java:S1192"GDefine a constant instead of duplicating this literal "  --  " 6 times.(¿æ’
+Q	java:S125„"<This block of commented-out lines of code should be removed.(”ê—7
+W	java:S125ˆ"<This block of commented-out lines of code should be removed.(Ø„öõüÿÿÿÿ
+W	java:S125€"<This block of commented-out lines of code should be removed.(›ª·•ùÿÿÿÿ
+=	java:S131›""Add a default case to this switch.(öÛ«°şÿÿÿÿ
+R	java:S125Â"<This block of commented-out lines of code should be removed.(Í¥”©
+<	java:S131u""Add a default case to this switch.(öÛ«°şÿÿÿÿ
+=	java:S131¿""Add a default case to this switch.(×“¾ñùÿÿÿÿ

@@ -1,0 +1,19 @@
+
+i
+java:S3776ƒ"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(’•âé
+_
+java:S2184~"DCast one of the operands of this subtraction operation to a "float".(ÏÇªúÿÿÿÿ
+W
+java:S2184¶"@Cast one of the operands of this integer division to a "double".(€åÎ»
+W
+java:S2184©"@Cast one of the operands of this integer division to a "double".(Àú¡‰
+\
+java:S2184~"ACast one of the operands of this addition operation to a "float".(ÏÇªúÿÿÿÿ
+`
+java:S3358¸"DExtract this nested ternary operation into an independent statement.(æÁí¼şÿÿÿÿ
+`
+java:S3358´"DExtract this nested ternary operation into an independent statement.(ÃÜÀØıÿÿÿÿ
+[
+java:S3358¹"DExtract this nested ternary operation into an independent statement.(´â§±
+W
+java:S2184¯"@Cast one of the operands of this integer division to a "double".(€åÎ»

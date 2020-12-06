@@ -1,0 +1,13 @@
+
+_
+java:S3358N"DExtract this nested ternary operation into an independent statement.(ÃÜÀØıÿÿÿÿ
+[
+java:S2184O"@Cast one of the operands of this integer division to a "double".(“·§ùÿÿÿÿ
+[
+java:S2184J"@Cast one of the operands of this integer division to a "double".(™È‚æùÿÿÿÿ
+[
+java:S2184C"@Cast one of the operands of this integer division to a "double".(“·§ùÿÿÿÿ
+h
+java:S3776;"RRefactor this method to reduce its Cognitive Complexity from 19 to the 15 allowed.(¼¦µÈ
+Y
+java:S3358H"DExtract this nested ternary operation into an independent statement.(öƒÉl

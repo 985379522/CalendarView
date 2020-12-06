@@ -1,0 +1,30 @@
+
+[
+java:S2184Š"DCast one of the operands of this subtraction operation to a "float".(»ñİ¨
+d
+java:S1192¶"MDefine a constant instead of duplicating this literal "translationY" 3 times.(åı¶
+F
+java:S1066ô"/Merge this if statement with the enclosing one.(½ÿíè
+n
+java:S3776“"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(Ö¼Ùıÿÿÿÿ
+=	java:S131İ""Add a default case to this switch.(ë´åİşÿÿÿÿ
+D
+java:S1185¦"(Remove this method to simply inherit it.(ÿ™¢§ûÿÿÿÿ
+i
+java:S3776¥"RRefactor this method to reduce its Cognitive Complexity from 38 to the 15 allowed.(ôó§è
+i
+java:S3776Ä"RRefactor this method to reduce its Cognitive Complexity from 29 to the 15 allowed.(ÑÆ
+I
+java:S1199¿"-Extract this nested code block into a method.(ÖºĞ¾úÿÿÿÿ
+=	java:S131¹""Add a default case to this switch.(ë´åİşÿÿÿÿ
+g
+java:S1301İ"KReplace this "switch" statement by "if" statements to increase readability.(ë´åİşÿÿÿÿ
+E
+java:S1066º"/Merge this if statement with the enclosing one.(ÁşŠ
+`
+java:S2184"DCast one of the operands of this subtraction operation to a "float".(‘öüûıÿÿÿÿ
+K
+java:S1481²"/Remove this unused "mTouchSlop" local variable.(†²é¢ùÿÿÿÿ
+R	java:S125"<This block of commented-out lines of code should be removed.(‰²şÇ
+F
+java:S1066ş"/Merge this if statement with the enclosing one.(šü“Ÿ

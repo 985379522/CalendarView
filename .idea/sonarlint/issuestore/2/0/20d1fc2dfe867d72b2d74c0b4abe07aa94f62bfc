@@ -1,0 +1,23 @@
+
+\
+java:S2184B"ACast one of the operands of this addition operation to a "float".(­‚ê—ùÿÿÿÿ
+\
+java:S2184B"ACast one of the operands of this addition operation to a "float".(­‚ê—ùÿÿÿÿ
+_
+java:S2184B"DCast one of the operands of this subtraction operation to a "float".(­‚ê—ùÿÿÿÿ
+_
+java:S2184B"DCast one of the operands of this subtraction operation to a "float".(­‚ê—ùÿÿÿÿ
+V
+java:S2184d"@Cast one of the operands of this integer division to a "double".(øºÛ
+[
+java:S2184j"@Cast one of the operands of this integer division to a "double".(“·§ùÿÿÿÿ
+[
+java:S2184p"@Cast one of the operands of this integer division to a "double".(“·§ùÿÿÿÿ
+h
+java:S3776]"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.(¼¦µÈ
+Z
+java:S3358h"DExtract this nested ternary operation into an independent statement.(Ã†öÎ
+_
+java:S3358o"DExtract this nested ternary operation into an independent statement.(ÃÜÀØıÿÿÿÿ
+_
+java:S3358r"DExtract this nested ternary operation into an independent statement.(ÍÉš‡øÿÿÿÿ

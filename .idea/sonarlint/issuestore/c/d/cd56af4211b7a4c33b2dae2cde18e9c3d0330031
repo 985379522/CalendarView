@@ -1,0 +1,31 @@
+
+\
+java:S2184:"ACast one of the operands of this addition operation to a "float".(Ë‡Óùÿÿÿÿ
+\
+java:S2184:"ACast one of the operands of this addition operation to a "float".(Ë‡Óùÿÿÿÿ
+\
+java:S2184P"ACast one of the operands of this division operation to a "float".(üØŸúÿÿÿÿ
+Z
+java:S2184V"DCast one of the operands of this subtraction operation to a "float".(·ŞÍÀ
+Z
+java:S2184X"DCast one of the operands of this subtraction operation to a "float".(‰Êé
+Z
+java:S2184X"DCast one of the operands of this subtraction operation to a "float".(‰Êé
+\
+java:S2184j"ACast one of the operands of this addition operation to a "float".(È´‚ıÿÿÿÿ
+\
+java:S2184j"ACast one of the operands of this addition operation to a "float".(È´‚ıÿÿÿÿ
+V
+java:S2184s"@Cast one of the operands of this integer division to a "double".(øºÛ
+V
+java:S2184x"@Cast one of the operands of this integer division to a "double".(©™’¸
+[
+java:S2184}"@Cast one of the operands of this integer division to a "double".(“·§ùÿÿÿÿ
+Y
+java:S1155K">Use isEmpty() to check whether the collection is empty or not.(óµŸúÿÿÿÿ
+h
+java:S3776i"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(¼¦µÈ
+Z
+java:S3358|"DExtract this nested ternary operation into an independent statement.(ÅÿÒ§
+_
+java:S3358"DExtract this nested ternary operation into an independent statement.(ÍÉš‡øÿÿÿÿ

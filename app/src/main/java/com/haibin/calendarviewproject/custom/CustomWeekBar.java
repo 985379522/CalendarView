@@ -13,17 +13,19 @@ import com.haibin.calendarviewproject.R;
  * 自定义英文栏
  * Created by huanghaibin on 2017/11/30.
  */
-
+//类似EnglishWeekBar，少了个setPadding(设置内边框)
 public class CustomWeekBar extends WeekBar {
 
     private int mPreSelectedIndex;
 
     public CustomWeekBar(Context context) {
         super(context);
+        //布局服务，实例化与Layout XML文件对应的View对象
         LayoutInflater.from(context).inflate(R.layout.custom_week_bar, this, true);
         setBackgroundColor(Color.WHITE);
     }
 
+    //选中日期，更改选中的对应星期
     @Override
     protected void onDateSelected(Calendar calendar, int weekStart, boolean isClick) {
         getChildAt(mPreSelectedIndex).setSelected(false);

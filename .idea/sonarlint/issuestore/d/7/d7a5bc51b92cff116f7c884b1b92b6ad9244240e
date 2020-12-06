@@ -1,0 +1,5 @@
+
+R	java:S110"=This class has 10 parents which is greater than 5 authorized.(¬î‘Ø
+
+java:S1186¤"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(È‹˜Ñıÿÿÿÿ
+=	java:S131ˆ""Add a default case to this switch.(×“¾ñùÿÿÿÿ

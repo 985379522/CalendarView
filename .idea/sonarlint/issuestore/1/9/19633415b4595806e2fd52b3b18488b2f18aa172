@@ -1,0 +1,8 @@
+
+j
+java:S3008"TRename this field "TRUNK_STR" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ðÖÄë
+k
+java:S3008"URename this field "BRANCH_STR" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ë¼¥‰
+O
+java:S1118
+":Add a private constructor to hide the implicit public one.(„®Æ@

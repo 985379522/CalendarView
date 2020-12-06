@@ -32,6 +32,7 @@ public class CustomYearView extends YearView {
     private int mTextPadding;
     /**
      * 闰年字体
+     * 默认开启反锯齿
      */
     private Paint mLeapYearTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
@@ -46,6 +47,7 @@ public class CustomYearView extends YearView {
 
     }
 
+    //绘制月提示栏
     @Override
     protected void onDrawMonth(Canvas canvas, int year, int month, int x, int y, int width, int height) {
 
@@ -56,6 +58,7 @@ public class CustomYearView extends YearView {
                 x + mItemWidth / 2 - mTextPadding,
                 y + mMonthTextBaseLine,
                 mMonthTextPaint);
+        //闰年二月，额外绘制文本
         if (month == 2 && isLeapYear(year)) {
             float w = getTextWidth(mMonthTextPaint, text);
 
@@ -81,7 +84,7 @@ public class CustomYearView extends YearView {
     }
 
 
-
+    //绘制星期提示栏
     @Override
     protected void onDrawWeek(Canvas canvas, int week, int x, int y, int width, int height) {
         String text = getContext().getResources().getStringArray(com.haibin.calendarview.R.array.year_view_week_string_array)[week];
@@ -91,7 +94,7 @@ public class CustomYearView extends YearView {
                 mWeekTextPaint);
     }
 
-
+    //绘制当前选中的日期图形
     @Override
     protected boolean onDrawSelected(Canvas canvas, Calendar calendar, int x, int y, boolean hasScheme) {
         int cx = x + mItemWidth / 2;
@@ -101,11 +104,13 @@ public class CustomYearView extends YearView {
         return true;
     }
 
+    //不绘制事件标记图形，覆写留空
     @Override
     protected void onDrawScheme(Canvas canvas, Calendar calendar, int x, int y) {
 
     }
 
+    //绘制日期文本
     @Override
     protected void onDrawText(Canvas canvas, Calendar calendar, int x, int y, boolean hasScheme, boolean isSelected) {
         float baselineY = mTextBaseLine + y;
