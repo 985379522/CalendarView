@@ -860,7 +860,7 @@ public class CalendarLayout extends LinearLayout {
 
 
     /**
-     * 周视图显示事件
+     * 月视图显示事件
      */
     private void onShowMonthView() {
         if (mMonthView.getVisibility() == VISIBLE) {
