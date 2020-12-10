@@ -23,27 +23,29 @@
 
     <string name="list_dialog_title">Dynamic Update</string>
 
-    <string name="func_dialog_title">Function</string>
+    <string name="func_dialog_title">Styles</string>
 
     <string-array name="list_dialog_items">
         <item>Change week start with sun</item>
         <item>Change week start with mon</item>
         <item>Change week start with sat</item>
         <item>Change select mode：single/default</item>
-        <item>Change month and week view with CustomView</item>
+        <item>scrollToCurrentDay</item>
         <item>MonthViewShowMode：all</item>
         <item>MonthViewShowMode：only_current</item>
         <item>MonthViewShowMode：fix</item>
     </string-array>
 
     <string-array name="func_dialog_items">
-        <item>Expand CalendarLayout</item>
-        <item>Shrink CalendarLayout</item>
-        <item>scrollToPre</item>
-        <item>scrollToNext</item>
-        <item>scrollToCurrent</item>
-        <item>Limit calendar range</item>
-        <item>Show range</item>
+        <item>Standard Style</item>
+        <item>Custom Style</item>
+        <item>Colorful Style</item>
+        <item>Full Style</item>
+        <item>Mix Style</item>
+        <item>Index Style</item>
+        <item>Simple Style</item>
+        <item>Solar Style</item>
+        <item>Progress Style</item>
     </string-array>
 
 

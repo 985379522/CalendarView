@@ -34,6 +34,7 @@ public class SolarWeekView extends WeekView {
         mPointRadius = dipToPx(context, 3.6f);
         mPointPaint.setColor(Color.RED);
 
+
     }
 
     @Override

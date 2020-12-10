@@ -1,13 +1,17 @@
 package com.haibin.calendarviewproject;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
 
 import androidx.appcompat.app.AlertDialog;
 
+import android.graphics.Color;
+import android.os.Build;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,21 +21,27 @@ import com.haibin.calendarview.CalendarLayout;
 import com.haibin.calendarview.CalendarView;
 import com.haibin.calendarview.TrunkBranchAnnals;
 import com.haibin.calendarviewproject.base.activity.BaseActivity;
-import com.haibin.calendarviewproject.colorful.ColorfulActivity;
-import com.haibin.calendarviewproject.custom.CustomActivity;
-import com.haibin.calendarviewproject.full.FullActivity;
-import com.haibin.calendarviewproject.index.IndexActivity;
-import com.haibin.calendarviewproject.meizu.MeiZuActivity;
+import com.haibin.calendarviewproject.colorful.ColorfulMonthView;
+import com.haibin.calendarviewproject.colorful.ColorfulWeekView;
+import com.haibin.calendarviewproject.custom.CustomMonthView;
+import com.haibin.calendarviewproject.custom.CustomWeekBar;
+import com.haibin.calendarviewproject.custom.CustomWeekView;
+import com.haibin.calendarviewproject.full.FullMonthView;
+import com.haibin.calendarviewproject.full.FullWeekView;
+import com.haibin.calendarviewproject.index.IndexMonthView;
+import com.haibin.calendarviewproject.index.IndexWeekView;
 import com.haibin.calendarviewproject.meizu.MeiZuMonthView;
 import com.haibin.calendarviewproject.meizu.MeizuWeekView;
-import com.haibin.calendarviewproject.mix.MixActivity;
-import com.haibin.calendarviewproject.multi.MultiActivity;
-import com.haibin.calendarviewproject.pager.ViewPagerActivity;
-import com.haibin.calendarviewproject.progress.ProgressActivity;
-import com.haibin.calendarviewproject.range.RangeActivity;
-import com.haibin.calendarviewproject.simple.SimpleActivity;
-import com.haibin.calendarviewproject.single.SingleActivity;
-import com.haibin.calendarviewproject.solay.SolarActivity;
+import com.haibin.calendarviewproject.mix.MixMonthView;
+import com.haibin.calendarviewproject.mix.MixWeekBar;
+import com.haibin.calendarviewproject.mix.MixWeekView;
+import com.haibin.calendarviewproject.progress.ProgressMonthView;
+import com.haibin.calendarviewproject.progress.ProgressWeekView;
+import com.haibin.calendarviewproject.simple.SimpleMonthView;
+import com.haibin.calendarviewproject.simple.SimpleWeekView;
+import com.haibin.calendarviewproject.solay.SolarMonthView;
+import com.haibin.calendarviewproject.solay.SolarWeekBar;
+import com.haibin.calendarviewproject.solay.SolarWeekView;
 
 import java.util.HashMap;
 import java.util.List;
@@ -45,10 +55,8 @@ public class MainActivity extends BaseActivity implements
         CalendarView.OnYearChangeListener,
         CalendarView.OnWeekChangeListener,
         CalendarView.OnViewChangeListener,
-        CalendarView.OnCalendarInterceptListener,
         CalendarView.OnYearViewChangeListener,
-        DialogInterface.OnClickListener,
-        View.OnClickListener {
+        DialogInterface.OnClickListener {
 
     TextView mTextMonthDay;
 
@@ -59,10 +67,15 @@ public class MainActivity extends BaseActivity implements
     TextView mTextCurrentDay;
 
     CalendarView mCalendarView;
+    CalendarLayout mLayout;
+    LinearLayout mRoot;
+    RelativeLayout mrl_tool;
+
 
     RelativeLayout mRelativeTool;
     private int mYear;
     CalendarLayout mCalendarLayout;
+    private int mCalendarHeight;
 
     //AlertDialog-(弹出式)对话框，置顶于所有界面元素之上，能够屏蔽掉其他控件的交互能力，因此一般用于提示一些非常重要的内容或者警告信息。
     private AlertDialog mMoreDialog;
@@ -81,10 +94,12 @@ public class MainActivity extends BaseActivity implements
         mTextMonthDay = findViewById(R.id.tv_month_day);
         mTextYear = findViewById(R.id.tv_year);
         mTextLunar = findViewById(R.id.tv_lunar);
-
+        mCalendarHeight = dipToPx(this, 46);
         mRelativeTool = findViewById(R.id.rl_tool);
         mCalendarView = findViewById(R.id.calendarView);
-        //mCalendarView.setRange(2018, 7, 1, 2019, 4, 28);
+        mLayout = findViewById(R.id.calendarLayout);
+        mRoot = findViewById(R.id.root);
+        mrl_tool = findViewById(R.id.rl_tool);
         mTextCurrentDay = findViewById(R.id.tv_current_day);
         mTextMonthDay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,40 +135,104 @@ public class MainActivity extends BaseActivity implements
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
-                            case 0:
-                                mCalendarLayout.expand();
+                            case 0:         //Meizu
+                                mCalendarView.clearSchemeDate();
+                                initCustomScheme();
+                                resetSettings();
+                                mCalendarHeight = dipToPx(MainActivity.this, 55);
+                                mCalendarView.setCalendarItemHeight(mCalendarHeight);
+                                mCalendarView.setWeekView(MeizuWeekView.class);
+                                mCalendarView.setMonthView(MeiZuMonthView.class);
+                                mCalendarView.setWeekBar(CustomWeekBar.class);
                                 break;
-                            case 1:
-                                boolean result = mCalendarLayout.shrink();
-                                Log.e("shrink", " --  " + result);
+                            case 1:         //Custom
+                                mCalendarView.clearSchemeDate();
+                                initCustomScheme();
+                                resetSettings();
+                                mCalendarHeight = dipToPx(MainActivity.this, 55);
+                                mCalendarView.setCalendarItemHeight(mCalendarHeight);
+                                mCalendarView.setWeekView(CustomWeekView.class);
+                                mCalendarView.setMonthView(CustomMonthView.class);
+                                mCalendarView.setWeekBar(CustomWeekBar.class);
                                 break;
-                            case 2:
-                                mCalendarView.scrollToPre(false);
+                            case 2:         //Colorful
+                                mCalendarView.clearSchemeDate();
+                                initNormalScheme();
+                                resetSettings();
+                                mCalendarHeight = dipToPx(MainActivity.this, 55);
+                                mCalendarView.setCalendarItemHeight(mCalendarHeight);
+                                mCalendarView.setWeekView(ColorfulWeekView.class);
+                                mCalendarView.setMonthView(ColorfulMonthView.class);
+                                mCalendarView.setWeekBar(CustomWeekBar.class);
                                 break;
-                            case 3:
-                                mCalendarView.scrollToNext(false);
+                            case 3:         //Full
+                                mCalendarView.clearSchemeDate();
+                                initFullScheme();
+                                resetSettings();
+                                mCalendarHeight = dipToPx(MainActivity.this, 85);
+                                mCalendarView.setCalendarItemHeight(mCalendarHeight);
+                                mCalendarView.setWeekView(FullWeekView.class);
+                                mCalendarView.setMonthView(FullMonthView.class);
+                                mCalendarView.setWeekBar(EnglishWeekBar.class);
                                 break;
-                            case 4:
-                                //mCalendarView.scrollToCurrent(true);
-                                mCalendarView.scrollToCalendar(2018, 12, 30);
+                            case 4:         //Mix
+                                mCalendarView.clearSchemeDate();
+                                initCustomScheme();
+                                resetSettings();
+                                mCalendarHeight = dipToPx(MainActivity.this, 55);
+                                mCalendarView.setCalendarPaddingLeft(100);
+                                mCalendarView.setCalendarItemHeight(mCalendarHeight);
+                                mCalendarView.setWeekView(MixWeekView.class);
+                                mCalendarView.setMonthView(MixMonthView.class);
+                                mCalendarView.setWeekBar(MixWeekBar.class);
+                                mCalendarView.postInvalidate();
                                 break;
-                            case 5:
-                                mCalendarView.setRange(2018, 7, 1, 2019, 4, 28);
-//                                mCalendarView.setRange(mCalendarView.getCurYear(), mCalendarView.getCurMonth(), 6,
-//                                        mCalendarView.getCurYear(), mCalendarView.getCurMonth(), 23);
+                            case 5:         //Index
+                                mCalendarView.clearSchemeDate();
+                                initNormalScheme();
+                                resetSettings();
+                                mCalendarHeight = dipToPx(MainActivity.this, 55);
+                                mCalendarView.setCalendarItemHeight(mCalendarHeight);
+                                mCalendarView.setWeekView(IndexWeekView.class);
+                                mCalendarView.setMonthView(IndexMonthView.class);
+                                mCalendarView.setWeekBar(CustomWeekBar.class);
                                 break;
-                            case 6:
-                                Log.e("scheme", "  " + mCalendarView.getSelectedCalendar().getScheme() + "  --  "
-                                        + mCalendarView.getSelectedCalendar().isCurrentDay());
-                                List<Calendar> weekCalendars = mCalendarView.getCurrentWeekCalendars();
-                                for (Calendar calendar : weekCalendars) {
-                                    Log.e("onWeekChange", calendar.toString() + "  --  " + calendar.getScheme());
+                            case 6:         //Simple
+                                mCalendarView.clearSchemeDate();
+                                initNormalScheme();
+                                resetSettings();
+                                mCalendarHeight = dipToPx(MainActivity.this, 55);
+                                mCalendarView.setCalendarItemHeight(mCalendarHeight);
+                                mCalendarView.setWeekView(SimpleWeekView.class);
+                                mCalendarView.setMonthView(SimpleMonthView.class);
+                                mCalendarView.setWeekBar(EnglishWeekBar.class);
+                                break;
+                            case 7:         //Solar
+                                mCalendarView.clearSchemeDate();
+                                initSolarScheme();
+                                resetSettings();
+                                if (Build.VERSION.SDK_INT >= 21) {
+                                    getWindow().setStatusBarColor(getResources().getColor(R.color.solar_background));
                                 }
-                                new AlertDialog.Builder(MainActivity.this)
-                                        .setMessage(String.format("Calendar Range: \n%s —— %s",
-                                                mCalendarView.getMinRangeCalendar(),
-                                                mCalendarView.getMaxRangeCalendar()))
-                                        .show();
+                                mCalendarView.setBackgroundResource(R.color.solar_background);
+                                mLayout.setBackgroundResource(R.color.solar_background);
+                                //mRoot.setBackgroundResource(R.color.solar_background);
+                                mrl_tool.setBackgroundResource(R.color.solar_background);
+                                mCalendarHeight = dipToPx(MainActivity.this, 55);
+                                mCalendarView.setCalendarItemHeight(mCalendarHeight);
+                                mCalendarView.setWeekView(SolarWeekView.class);
+                                mCalendarView.setMonthView(SolarMonthView.class);
+                                mCalendarView.setWeekBar(SolarWeekBar.class);
+                                break;
+                            case 8:         //Progress
+                                mCalendarView.clearSchemeDate();
+                                initProgressScheme();
+                                resetSettings();
+                                mCalendarHeight = dipToPx(MainActivity.this, 55);
+                                mCalendarView.setCalendarItemHeight(mCalendarHeight);
+                                mCalendarView.setWeekView(ProgressWeekView.class);
+                                mCalendarView.setMonthView(ProgressMonthView.class);
+                                mCalendarView.setWeekBar(CustomWeekBar.class);
                                 break;
                         }
                     }
@@ -182,9 +261,6 @@ public class MainActivity extends BaseActivity implements
         mCalendarView.setOnWeekChangeListener(this);
         mCalendarView.setOnYearViewChangeListener(this);
 
-        //设置日期拦截事件，仅适用单选模式，当前无效
-        mCalendarView.setOnCalendarInterceptListener(this);
-
         mCalendarView.setOnViewChangeListener(this);
         mTextYear.setText(String.valueOf(mCalendarView.getCurYear()));
         mYear = mCalendarView.getCurYear();
@@ -200,90 +276,8 @@ public class MainActivity extends BaseActivity implements
         final int year = mCalendarView.getCurYear();
         final int month = mCalendarView.getCurMonth();
 
-        Map<String, Calendar> map = new HashMap<>();
-        for (int y = 1997; y < 2082; y++) {
-            for (int m = 1; m <= 12; m++) {
+        initNormalScheme();
 
-                map.put(getSchemeCalendar(y, m, 1, 0xFF40db25, "假").toString(),
-                        getSchemeCalendar(y, m, 1, 0xFF40db25, "假"));
-
-                map.put(getSchemeCalendar(y, m, 2, 0xFFe69138, "游").toString(),
-                        getSchemeCalendar(y, m, 2, 0xFFe69138, "游"));
-                map.put(getSchemeCalendar(y, m, 3, 0xFFdf1356, "事").toString(),
-                        getSchemeCalendar(y, m, 3, 0xFFdf1356, "事"));
-                map.put(getSchemeCalendar(y, m, 4, 0xFFaacc44, "车").toString(),
-                        getSchemeCalendar(y, m, 4, 0xFFaacc44, "车"));
-                map.put(getSchemeCalendar(y, m, 5, 0xFFbc13f0, "驾").toString(),
-                        getSchemeCalendar(y, m, 5, 0xFFbc13f0, "驾"));
-                map.put(getSchemeCalendar(y, m, 6, 0xFF542261, "记").toString(),
-                        getSchemeCalendar(y, m, 6, 0xFF542261, "记"));
-                map.put(getSchemeCalendar(y, m, 7, 0xFF4a4bd2, "会").toString(),
-                        getSchemeCalendar(y, m, 7, 0xFF4a4bd2, "会"));
-                map.put(getSchemeCalendar(y, m, 8, 0xFFe69138, "车").toString(),
-                        getSchemeCalendar(y, m, 8, 0xFFe69138, "车"));
-                map.put(getSchemeCalendar(y, m, 9, 0xFF542261, "考").toString(),
-                        getSchemeCalendar(y, m, 9, 0xFF542261, "考"));
-                map.put(getSchemeCalendar(y, m, 10, 0xFF87af5a, "记").toString(),
-                        getSchemeCalendar(y, m, 10, 0xFF87af5a, "记"));
-                map.put(getSchemeCalendar(y, m, 11, 0xFF40db25, "会").toString(),
-                        getSchemeCalendar(y, m, 11, 0xFF40db25, "会"));
-                map.put(getSchemeCalendar(y, m, 12, 0xFFcda1af, "游").toString(),
-                        getSchemeCalendar(y, m, 12, 0xFFcda1af, "游"));
-                map.put(getSchemeCalendar(y, m, 13, 0xFF95af1a, "事").toString(),
-                        getSchemeCalendar(y, m, 13, 0xFF95af1a, "事"));
-                map.put(getSchemeCalendar(y, m, 14, 0xFF33aadd, "学").toString(),
-                        getSchemeCalendar(y, m, 14, 0xFF33aadd, "学"));
-                map.put(getSchemeCalendar(y, m, 15, 0xFF1aff1a, "码").toString(),
-                        getSchemeCalendar(y, m, 15, 0xFF1aff1a, "码"));
-                map.put(getSchemeCalendar(y, m, 16, 0xFF22acaf, "驾").toString(),
-                        getSchemeCalendar(y, m, 16, 0xFF22acaf, "驾"));
-                map.put(getSchemeCalendar(y, m, 17, 0xFF99a6fa, "校").toString(),
-                        getSchemeCalendar(y, m, 17, 0xFF99a6fa, "校"));
-                map.put(getSchemeCalendar(y, m, 18, 0xFFe69138, "车").toString(),
-                        getSchemeCalendar(y, m, 18, 0xFFe69138, "车"));
-                map.put(getSchemeCalendar(y, m, 19, 0xFF40db25, "码").toString(),
-                        getSchemeCalendar(y, m, 19, 0xFF40db25, "码"));
-                map.put(getSchemeCalendar(y, m, 20, 0xFFe69138, "火").toString(),
-                        getSchemeCalendar(y, m, 20, 0xFFe69138, "火"));
-                map.put(getSchemeCalendar(y, m, 21, 0xFF40db25, "假").toString(),
-                        getSchemeCalendar(y, m, 21, 0xFF40db25, "假"));
-                map.put(getSchemeCalendar(y, m, 22, 0xFF99a6fa, "记").toString(),
-                        getSchemeCalendar(y, m, 22, 0xFF99a6fa, "记"));
-                map.put(getSchemeCalendar(y, m, 23, 0xFF33aadd, "假").toString(),
-                        getSchemeCalendar(y, m, 23, 0xFF33aadd, "假"));
-                map.put(getSchemeCalendar(y, m, 24, 0xFF40db25, "校").toString(),
-                        getSchemeCalendar(y, m, 24, 0xFF40db25, "校"));
-                map.put(getSchemeCalendar(y, m, 25, 0xFF1aff1a, "假").toString(),
-                        getSchemeCalendar(y, m, 25, 0xFF1aff1a, "假"));
-                map.put(getSchemeCalendar(y, m, 26, 0xFF40db25, "议").toString(),
-                        getSchemeCalendar(y, m, 26, 0xFF40db25, "议"));
-                map.put(getSchemeCalendar(y, m, 27, 0xFF95af1a, "假").toString(),
-                        getSchemeCalendar(y, m, 27, 0xFF95af1a, "假"));
-                map.put(getSchemeCalendar(y, m, 28, 0xFF40db25, "码").toString(),
-                        getSchemeCalendar(y, m, 28, 0xFF40db25, "码"));
-            }
-        }
-
-        //28560 数据量增长不会影响UI响应速度，请使用这个API替换
-        mCalendarView.setSchemeDate(map);
-
-        //可自行测试性能差距
-        //mCalendarView.setSchemeDate(schemes);
-
-        //不同布局的点击监听器
-        findViewById(R.id.ll_flyme).setOnClickListener(this);
-        findViewById(R.id.ll_simple).setOnClickListener(this);
-        findViewById(R.id.ll_range).setOnClickListener(this);
-        findViewById(R.id.ll_mix).setOnClickListener(this);
-        findViewById(R.id.ll_colorful).setOnClickListener(this);
-        findViewById(R.id.ll_index).setOnClickListener(this);
-        findViewById(R.id.ll_tab).setOnClickListener(this);
-        findViewById(R.id.ll_single).setOnClickListener(this);
-        findViewById(R.id.ll_multi).setOnClickListener(this);
-        findViewById(R.id.ll_solar_system).setOnClickListener(this);
-        findViewById(R.id.ll_progress).setOnClickListener(this);
-        findViewById(R.id.ll_custom).setOnClickListener(this);
-        findViewById(R.id.ll_full).setOnClickListener(this);
     }
 
     //动态更新的响应
@@ -307,9 +301,7 @@ public class MainActivity extends BaseActivity implements
                 }
                 break;
             case 4:
-                mCalendarView.setWeekView(MeizuWeekView.class);
-                mCalendarView.setMonthView(MeiZuMonthView.class);
-                mCalendarView.setWeekBar(EnglishWeekBar.class);
+                mCalendarView.scrollToCurrent(true);
                 break;
             case 5:
                 mCalendarView.setAllMode();
@@ -320,55 +312,6 @@ public class MainActivity extends BaseActivity implements
             case 7:
                 mCalendarView.setFixMode();
                 break;
-        }
-    }
-
-    //点击进入不同布局的响应
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.ll_flyme:
-                MeiZuActivity.show(this);
-                //CalendarActivity.show(this);
-
-                break;
-            case R.id.ll_custom:
-                CustomActivity.show(this);
-                break;
-            case R.id.ll_mix:
-                MixActivity.show(this);
-                break;
-            case R.id.ll_full:
-                FullActivity.show(this);
-                break;
-            case R.id.ll_range:
-                RangeActivity.show(this);
-                break;
-            case R.id.ll_simple:
-                SimpleActivity.show(this);
-                break;
-            case R.id.ll_colorful:
-                ColorfulActivity.show(this);
-                break;
-            case R.id.ll_index:
-                IndexActivity.show(this);
-                break;
-            case R.id.ll_tab:
-                ViewPagerActivity.show(this);
-                break;
-            case R.id.ll_single:
-                SingleActivity.show(this);
-                break;
-            case R.id.ll_multi:
-                MultiActivity.show(this);
-                break;
-            case R.id.ll_solar_system:
-                SolarActivity.show(this);
-                break;
-            case R.id.ll_progress:
-                ProgressActivity.show(this);
-                break;
-
         }
     }
 
@@ -399,9 +342,6 @@ public class MainActivity extends BaseActivity implements
         mTextYear.setText(String.valueOf(calendar.getYear()));
         mTextLunar.setText(calendar.getLunar());
         mYear = calendar.getYear();
-        if (isClick) {
-            Toast.makeText(this, getCalendarText(calendar), Toast.LENGTH_SHORT).show();
-        }
         //以下均为日志记录
 //        Log.e("lunar "," --  " + calendar.getLunarCalendar().toString() + "\n" +
 //        "  --  " + calendar.getLunarCalendar().getYear());
@@ -421,7 +361,7 @@ public class MainActivity extends BaseActivity implements
 
     @Override
     public void onCalendarLongClick(Calendar calendar) {
-        Toast.makeText(this, "长按不选择日期\n" + getCalendarText(calendar), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "长按显示详情\n" + getCalendarText(calendar), Toast.LENGTH_SHORT).show();
     }
 
     //点击/长按显示的文本
@@ -466,30 +406,216 @@ public class MainActivity extends BaseActivity implements
         Log.e("onYearViewChange", "年视图 -- " + (isClose ? "关闭" : "打开"));
     }
 
-    /**
-     * 屏蔽某些不可点击的日期，可根据自己的业务自行修改
-     *
-     * @param calendar calendar
-     * @return 是否屏蔽某些不可点击的日期，MonthView和WeekView有类似的API可调用
-     */
-    @Override
-    public boolean onCalendarIntercept(Calendar calendar) {
-        Log.e("onCalendarIntercept", calendar.toString());
-        int day = calendar.getDay();
-        return day == 1 || day == 3 || day == 6 || day == 11 || day == 12 || day == 15 || day == 20 || day == 26;
-    }
-
-    @Override
-    public void onCalendarInterceptClick(Calendar calendar, boolean isClick) {
-        Toast.makeText(this, calendar.toString() + "拦截不可点击", Toast.LENGTH_SHORT).show();
-    }
-
     @Override
     public void onYearChange(int year) {
         mTextMonthDay.setText(String.valueOf(year));
         Log.e("onYearChange", " 年份变化 " + year);
     }
 
+    public void initNormalScheme() {
+
+        Map<String, Calendar> map = new HashMap<>();
+        for (int y = 1997; y < 2082; y++) {
+            for (int m = 1; m <= 12; m++) {
+
+                map.put(getSchemeCalendar(y, m, 3, 0xFF40db25, "假").toString(),
+                        getSchemeCalendar(y, m, 3, 0xFF40db25, "假"));
+                map.put(getSchemeCalendar(y, m, 6, 0xFFe69138, "事").toString(),
+                        getSchemeCalendar(y, m, 6, 0xFFe69138, "事"));
+                map.put(getSchemeCalendar(y, m, 9, 0xFFdf1356, "议").toString(),
+                        getSchemeCalendar(y, m, 9, 0xFFdf1356, "议"));
+                map.put(getSchemeCalendar(y, m, 13, 0xFFedc56d, "记").toString(),
+                        getSchemeCalendar(y, m, 13, 0xFFedc56d, "记"));
+                map.put(getSchemeCalendar(y, m, 14, 0xFFedc56d, "记").toString(),
+                        getSchemeCalendar(y, m, 14, 0xFFedc56d, "记"));
+                map.put(getSchemeCalendar(y, m, 15, 0xFFaacc44, "假").toString(),
+                        getSchemeCalendar(y, m, 15, 0xFFaacc44, "假"));
+                map.put(getSchemeCalendar(y, m, 18, 0xFFbc13f0, "记").toString(),
+                        getSchemeCalendar(y, m, 18, 0xFFbc13f0, "记"));
+                map.put(getSchemeCalendar(y, m, 25, 0xFF13acf0, "假").toString(),
+                        getSchemeCalendar(y, m, 25, 0xFF13acf0, "假"));
+                map.put(getSchemeCalendar(y, m, 27, 0xFF13acf0, "多").toString(),
+                        getSchemeCalendar(y, m, 27, 0xFF13acf0, "多"));
+
+            }
+        }
+
+        mCalendarView.setSchemeDate(map);
+    }
+
+    public void initProgressScheme() {
+
+        Map<String, Calendar> map = new HashMap<>();
+        for (int y = 1997; y < 2082; y++) {
+            for (int m = 1; m <= 12; m++) {
+
+                map.put(getSchemeCalendar(y, m, 3, 0xFF40db25, "20").toString(),
+                        getSchemeCalendar(y, m, 3, 0xFF40db25, "20"));
+                map.put(getSchemeCalendar(y, m, 6, 0xFFe69138, "33").toString(),
+                        getSchemeCalendar(y, m, 6, 0xFFe69138, "33"));
+                map.put(getSchemeCalendar(y, m, 9, 0xFFdf1356, "25").toString(),
+                        getSchemeCalendar(y, m, 9, 0xFFdf1356, "25"));
+                map.put(getSchemeCalendar(y, m, 13, 0xFFedc56d, "50").toString(),
+                        getSchemeCalendar(y, m, 13, 0xFFedc56d, "50"));
+                map.put(getSchemeCalendar(y, m, 14, 0xFFedc56d, "80").toString(),
+                        getSchemeCalendar(y, m, 14, 0xFFedc56d, "80"));
+                map.put(getSchemeCalendar(y, m, 15, 0xFFaacc44, "20").toString(),
+                        getSchemeCalendar(y, m, 15, 0xFFaacc44, "20"));
+                map.put(getSchemeCalendar(y, m, 18, 0xFFbc13f0, "70").toString(),
+                        getSchemeCalendar(y, m, 18, 0xFFbc13f0, "70"));
+                map.put(getSchemeCalendar(y, m, 25, 0xFF13acf0, "36").toString(),
+                        getSchemeCalendar(y, m, 25, 0xFF13acf0, "36"));
+                map.put(getSchemeCalendar(y, m, 27, 0xFF13acf0, "95").toString(),
+                        getSchemeCalendar(y, m, 27, 0xFF13acf0, "95"));
+
+            }
+        }
+
+        mCalendarView.setSchemeDate(map);
+    }
+
+    public void initFullScheme() {
+
+        Map<String, Calendar> map = new HashMap<>();
+        for (int y = 1997; y < 2082; y++) {
+            for (int m = 1; m <= 12; m++) {
+
+                map.put(getFullSchemeCalendar(y, m, 3, 0xFF40db25, "假").toString(),
+                        getFullSchemeCalendar(y, m, 3, 0xFF40db25, "假"));
+                map.put(getFullSchemeCalendar(y, m, 6, 0xFFe69138, "事").toString(),
+                        getFullSchemeCalendar(y, m, 6, 0xFFe69138, "事"));
+                map.put(getFullSchemeCalendar(y, m, 9, 0xFFdf1356, "议").toString(),
+                        getFullSchemeCalendar(y, m, 9, 0xFFdf1356, "议"));
+                map.put(getFullSchemeCalendar(y, m, 13, 0xFFedc56d, "记").toString(),
+                        getFullSchemeCalendar(y, m, 13, 0xFFedc56d, "记"));
+                map.put(getFullSchemeCalendar(y, m, 14, 0xFFedc56d, "记").toString(),
+                        getFullSchemeCalendar(y, m, 14, 0xFFedc56d, "记"));
+                map.put(getFullSchemeCalendar(y, m, 15, 0xFFaacc44, "假").toString(),
+                        getFullSchemeCalendar(y, m, 15, 0xFFaacc44, "假"));
+                map.put(getFullSchemeCalendar(y, m, 18, 0xFFbc13f0, "记").toString(),
+                        getFullSchemeCalendar(y, m, 18, 0xFFbc13f0, "记"));
+                map.put(getFullSchemeCalendar(y, m, 25, 0xFF13acf0, "假").toString(),
+                        getFullSchemeCalendar(y, m, 25, 0xFF13acf0, "假"));
+                map.put(getFullSchemeCalendar(y, m, 27, 0xFF13acf0, "多").toString(),
+                        getFullSchemeCalendar(y, m, 27, 0xFF13acf0, "多"));
+
+            }
+        }
+
+        mCalendarView.setSchemeDate(map);
+    }
+
+    public void initCustomScheme() {
+
+        Map<String, Calendar> map = new HashMap<>();
+        for (int y = 1997; y < 2082; y++) {
+            for (int m = 1; m <= 12; m++) {
+
+                map.put(getCustomSchemeCalendar(y, m, 3, 0xFF40db25, "假").toString(),
+                        getCustomSchemeCalendar(y, m, 3, 0xFF40db25, "假"));
+                map.put(getCustomSchemeCalendar(y, m, 6, 0xFFe69138, "事").toString(),
+                        getCustomSchemeCalendar(y, m, 6, 0xFFe69138, "事"));
+                map.put(getCustomSchemeCalendar(y, m, 9, 0xFFdf1356, "议").toString(),
+                        getCustomSchemeCalendar(y, m, 9, 0xFFdf1356, "议"));
+                map.put(getCustomSchemeCalendar(y, m, 13, 0xFFedc56d, "记").toString(),
+                        getCustomSchemeCalendar(y, m, 13, 0xFFedc56d, "记"));
+                map.put(getCustomSchemeCalendar(y, m, 14, 0xFFedc56d, "记").toString(),
+                        getCustomSchemeCalendar(y, m, 14, 0xFFedc56d, "记"));
+                map.put(getCustomSchemeCalendar(y, m, 15, 0xFFaacc44, "假").toString(),
+                        getCustomSchemeCalendar(y, m, 15, 0xFFaacc44, "假"));
+                map.put(getCustomSchemeCalendar(y, m, 18, 0xFFbc13f0, "记").toString(),
+                        getCustomSchemeCalendar(y, m, 18, 0xFFbc13f0, "记"));
+                map.put(getCustomSchemeCalendar(y, m, 25, 0xFF13acf0, "假").toString(),
+                        getCustomSchemeCalendar(y, m, 25, 0xFF13acf0, "假"));
+                map.put(getCustomSchemeCalendar(y, m, 27, 0xFF13acf0, "多").toString(),
+                        getCustomSchemeCalendar(y, m, 27, 0xFF13acf0, "多"));
+
+            }
+        }
+
+        mCalendarView.setSchemeDate(map);
+    }
+
+    public void initSolarScheme() {
+
+        Map<String, Calendar> map = new HashMap<>();
+        for (int y = 1997; y < 2082; y++) {
+            for (int m = 1; m <= 12; m++) {
+
+                map.put(getSolarSchemeCalendar(y, m, 3, "假").toString(),
+                        getSolarSchemeCalendar(y, m, 3, "假"));
+                map.put(getSolarSchemeCalendar(y, m, 6, "事").toString(),
+                        getSolarSchemeCalendar(y, m, 6, "事"));
+                map.put(getSolarSchemeCalendar(y, m, 9, "议").toString(),
+                        getSolarSchemeCalendar(y, m, 9, "议"));
+                map.put(getSolarSchemeCalendar(y, m, 13, "记").toString(),
+                        getSolarSchemeCalendar(y, m, 13, "记"));
+                map.put(getSolarSchemeCalendar(y, m, 14, "记").toString(),
+                        getSolarSchemeCalendar(y, m, 14, "记"));
+                map.put(getSolarSchemeCalendar(y, m, 15, "假").toString(),
+                        getSolarSchemeCalendar(y, m, 15, "假"));
+                map.put(getSolarSchemeCalendar(y, m, 18, "记").toString(),
+                        getSolarSchemeCalendar(y, m, 18, "记"));
+                map.put(getSolarSchemeCalendar(y, m, 25, "假").toString(),
+                        getSolarSchemeCalendar(y, m, 25, "假"));
+                map.put(getSolarSchemeCalendar(y, m, 27, "多").toString(),
+                        getSolarSchemeCalendar(y, m, 27, "多"));
+
+            }
+        }
+
+        mCalendarView.setSchemeDate(map);
+    }
+
+    private Calendar getFullSchemeCalendar(int year, int month, int day, int color, String text) {
+        Calendar calendar = getSchemeCalendar(year, month, day, color, text);
+        calendar.addScheme(color, "假");
+        calendar.addScheme(day%2 == 0 ? 0xFF00CD00 : 0xFFD15FEE, "节");
+        calendar.addScheme(day%2 == 0 ? 0xFF660000 : 0xFF4169E1, "记");
+        return calendar;
+    }
+
+    private Calendar getCustomSchemeCalendar(int year, int month, int day, int color, String text) {
+        Calendar calendar = getSchemeCalendar(year, month, day, color, text);
+        calendar.addScheme(new Calendar.Scheme());
+        calendar.addScheme(0xFF008800, "假");
+        calendar.addScheme(0xFF008800, "节");
+        return calendar;
+    }
+
+    private Calendar getSolarSchemeCalendar(int year, int month, int day, String text) {
+        Calendar calendar = new Calendar();
+        calendar.setYear(year);
+        calendar.setMonth(month);
+        calendar.setDay(day);
+        calendar.setSchemeColor(Color.WHITE);
+        calendar.setScheme(text);
+        calendar.addScheme(0xFFa8b015, "rightTop");
+        calendar.addScheme(0xFF423cb0, "leftTop");
+        calendar.addScheme(0xFF643c8c, "bottom");
+        return calendar;
+    }
+
+    /**
+     * dp转px
+     *
+     * @param context context
+     * @param dpValue dp
+     * @return px
+     */
+    private static int dipToPx(Context context, float dpValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
+    }
+
+    private void resetSettings() {
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));
+        }
+        mCalendarView.setBackgroundResource(R.color.colorPrimary);
+        mLayout.setBackgroundResource(R.color.colorPrimary);
+        //mRoot.setBackgroundResource(R.color.colorPrimary);
+        mrl_tool.setBackgroundResource(R.color.colorPrimary);
+        mCalendarView.setCalendarPaddingLeft(0);
+    }
 }
-
-

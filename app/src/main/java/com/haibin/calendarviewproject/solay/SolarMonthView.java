@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 
 import com.haibin.calendarview.Calendar;
+import com.haibin.calendarview.CalendarUtil;
 import com.haibin.calendarview.MonthView;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class SolarMonthView extends MonthView {
 
 
     private Paint mPointPaint = new Paint();
+    private Paint mWhitePaint = new Paint();
 
     private int mRadius;
     private int mPointRadius;
@@ -35,6 +37,13 @@ public class SolarMonthView extends MonthView {
         mSchemePaint.setColor(0xFFFFFFFF);
         mPointRadius = dipToPx(context, 3.6f);
         mPointPaint.setColor(Color.RED);
+
+        mWhitePaint.setAntiAlias(true);
+        mWhitePaint.setStyle(Paint.Style.FILL);
+        mWhitePaint.setTextAlign(Paint.Align.CENTER);
+        mWhitePaint.setColor(Color.WHITE);
+        mWhitePaint.setFakeBoldText(true);
+        mWhitePaint.setTextSize(dipToPx(context, 14));
 
     }
 
@@ -91,12 +100,13 @@ public class SolarMonthView extends MonthView {
                     cx,
                     baselineY,
                     calendar.isCurrentDay() ? mCurDayTextPaint :
-                            calendar.isCurrentMonth() ? mSchemeTextPaint : mOtherMonthTextPaint);
+                            calendar.isCurrentMonth() ? mWhitePaint : mOtherMonthTextPaint);
 
         } else {
             canvas.drawText(String.valueOf(calendar.getDay()), cx, baselineY,
                     calendar.isCurrentDay() ? mCurDayTextPaint :
-                            calendar.isCurrentMonth() ? mCurMonthTextPaint : mOtherMonthTextPaint);
+                            calendar.isCurrentMonth() ? mWhitePaint : mOtherMonthTextPaint);
+                            //calendar.isCurrentMonth() ? mCurMonthTextPaint : mOtherMonthTextPaint);
         }
     }
 

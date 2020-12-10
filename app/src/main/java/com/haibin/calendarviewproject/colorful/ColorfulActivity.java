@@ -137,20 +137,7 @@ public class ColorfulActivity extends BaseActivity implements       //多彩样�
 
     @Override
     public void onClick(View v) {                                       //点击切换样式？
-        switch (v.getId()) {
-            case R.id.ll_flyme:                                         //不同样式
-                MeiZuActivity.show(this);
-                break;
-            case R.id.ll_simple:
-                SimpleActivity.show(this);
-                break;
-            case R.id.ll_colorful:
-                ColorfulActivity.show(this);
-                break;
-            case R.id.ll_index:
-                IndexActivity.show(this);
-                break;
-        }
+
     }
 
     //设置每日事件
