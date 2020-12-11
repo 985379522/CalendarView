@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><!--suppress ALL -->
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/root"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -116,17 +116,16 @@
             android:scaleType="centerInside"
             android:src="@mipmap/ic_more"
             android:tint="#333333" />
-
-
     </RelativeLayout>
 
     <com.haibin.calendarview.CalendarLayout
         android:id="@+id/calendarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="#fff"
         android:orientation="vertical"
-        app:calendar_show_mode="both_month_week_view">
+        app:calendar_show_mode="both_month_week_view"
+        app:calendar_content_view_id="@+id/recyclerView">
 
         <com.haibin.calendarview.CalendarView
             android:id="@+id/calendarView"
@@ -170,6 +169,20 @@
             app:year_view_week_text_color="#666666"
             app:month_view_auto_select_day="last_select_day_ignore_current"
             app:year_view_week_text_size="7sp" />
+
+        <com.haibin.calendarviewproject.group.GroupRecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/content_background"
+            app:group_background="@color/content_background"
+            app:group_center="false"
+            app:group_has_header="false"
+            app:group_height="42dp"
+            app:group_padding_left="16dp"
+            app:group_padding_right="16dp"
+            app:group_text_color="#555555"
+            app:group_text_size="14sp" />
 
     </com.haibin.calendarview.CalendarLayout>
 

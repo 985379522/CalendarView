@@ -19,6 +19,7 @@ public class SolarWeekView extends WeekView {
 
 
     private Paint mPointPaint = new Paint();
+    private Paint mWhitePaint = new Paint();
 
     private int mRadius;
     private int mPointRadius;
@@ -34,7 +35,12 @@ public class SolarWeekView extends WeekView {
         mPointRadius = dipToPx(context, 3.6f);
         mPointPaint.setColor(Color.RED);
 
-
+        mWhitePaint.setAntiAlias(true);
+        mWhitePaint.setStyle(Paint.Style.FILL);
+        mWhitePaint.setTextAlign(Paint.Align.CENTER);
+        mWhitePaint.setColor(Color.WHITE);
+        mWhitePaint.setFakeBoldText(true);
+        mWhitePaint.setTextSize(dipToPx(context, 14));
     }
 
     @Override
@@ -89,12 +95,14 @@ public class SolarWeekView extends WeekView {
                     cx,
                     baselineY,
                     calendar.isCurrentDay() ? mCurDayTextPaint :
-                            calendar.isCurrentMonth() ? mSchemeTextPaint : mSchemeTextPaint);
+                            calendar.isCurrentMonth() ? mWhitePaint : mOtherMonthTextPaint);
+                            //calendar.isCurrentMonth() ? mSchemeTextPaint : mSchemeTextPaint);
 
         } else {
             canvas.drawText(String.valueOf(calendar.getDay()), cx, baselineY,
                     calendar.isCurrentDay() ? mCurDayTextPaint :
-                            calendar.isCurrentMonth() ? mCurMonthTextPaint : mCurMonthTextPaint);
+                            calendar.isCurrentMonth() ? mWhitePaint : mOtherMonthTextPaint);
+                            //calendar.isCurrentMonth() ? mCurMonthTextPaint : mCurMonthTextPaint);
         }
     }
 

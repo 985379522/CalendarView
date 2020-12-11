@@ -28,6 +28,7 @@ import com.haibin.calendarviewproject.custom.CustomWeekBar;
 import com.haibin.calendarviewproject.custom.CustomWeekView;
 import com.haibin.calendarviewproject.full.FullMonthView;
 import com.haibin.calendarviewproject.full.FullWeekView;
+import com.haibin.calendarviewproject.group.GroupRecyclerView;
 import com.haibin.calendarviewproject.index.IndexMonthView;
 import com.haibin.calendarviewproject.index.IndexWeekView;
 import com.haibin.calendarviewproject.meizu.MeiZuMonthView;
@@ -69,6 +70,7 @@ public class MainActivity extends BaseActivity implements
     CalendarView mCalendarView;
     LinearLayout mRoot;
     RelativeLayout mrl_tool;
+    GroupRecyclerView mNewsView;
 
 
     RelativeLayout mRelativeTool;
@@ -99,6 +101,7 @@ public class MainActivity extends BaseActivity implements
         mCalendarLayout = findViewById(R.id.calendarLayout);
         mRoot = findViewById(R.id.root);
         mrl_tool = findViewById(R.id.rl_tool);
+        mNewsView = findViewById(R.id.recyclerView);
         mTextCurrentDay = findViewById(R.id.tv_current_day);
         mTextMonthDay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -196,7 +199,7 @@ public class MainActivity extends BaseActivity implements
         mTextCurrentDay.setText(String.valueOf(mCalendarView.getCurDay()));
 
         //根据天数不同选择视图
-        chooseSytleByDay();
+        //chooseSytleByDay();
     }
 
     @SuppressWarnings("unused")
@@ -552,6 +555,7 @@ public class MainActivity extends BaseActivity implements
         mCalendarLayout.setBackgroundResource(R.color.colorPrimary);
         //mRoot.setBackgroundResource(R.color.colorPrimary);
         mrl_tool.setBackgroundResource(R.color.colorPrimary);
+        mNewsView.setBackgroundResource(R.color.content_background);
         mCalendarView.setCalendarPaddingLeft(0);
     }
 
@@ -643,6 +647,7 @@ public class MainActivity extends BaseActivity implements
      * 切换至星系风格
      */
     private void changeToSolarStyle() {
+
         mCalendarView.clearSchemeDate();
         initSolarScheme();
         resetSettings();
@@ -658,7 +663,28 @@ public class MainActivity extends BaseActivity implements
         mCalendarView.setWeekView(SolarWeekView.class);
         mCalendarView.setMonthView(SolarMonthView.class);
         mCalendarView.setWeekBar(SolarWeekBar.class);
+        mNewsView.setBackgroundResource(R.color.solar_background);
         mCalendarView.update();
+        //以下是尝试使用setContentView(R.layout.id)的方式进行布局切换的代码
+        //使用setContentView(R.layout.id)似乎是解决不少问题的办法
+        //但在实际使用中，许多资源仍然需要重新加载
+        //而每个xml文件都需要进行改动
+        //实际达成的效果和直接利用java改动需要更改的项目没有太大差别
+        //只考虑在某些特殊地方使用(例如解决Mix风格的WeekBar错位问题)
+        //但值得注意的是，使用这种方法使得周月视图的切换恢复可用
+        //暂未知道原因，推测是activity_main.xml的问题
+        /**
+        mCalendarView.clearSchemeDate();
+        initSolarScheme();
+        resetSettings();
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().setStatusBarColor(getResources().getColor(R.color.solar_background));
+        }
+        mCalendarView.setWeekView(SolarWeekView.class);
+        mCalendarView.setMonthView(SolarMonthView.class);
+        mCalendarView.setWeekBar(SolarWeekBar.class);
+        setContentView(R.layout.activity_solay);
+         */
     }
 
     /**
