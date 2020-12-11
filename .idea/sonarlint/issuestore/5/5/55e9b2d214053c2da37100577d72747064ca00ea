@@ -1,9 +1,9 @@
 
-E
-java:S3740 "/Provide the parametrized type for this generic.(∑®≥≠
-S
-java:S1155W">Use isEmpty() to check whether the collection is empty or not.(””É^
 n
 java:S2637@"XThis method's return value is marked "androidx.annotation.NonNull" but null is returned.(£ﬂ…∂
+E
+java:S3740 "/Provide the parametrized type for this generic.(∑®≥≠
 [
 java:S1124p"EReorder the modifiers to comply with the Java Language Specification.(Ö Ê≠
+S
+java:S1155W">Use isEmpty() to check whether the collection is empty or not.(””É^

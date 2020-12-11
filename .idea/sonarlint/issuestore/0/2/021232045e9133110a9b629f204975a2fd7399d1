@@ -1,11 +1,11 @@
 
-e
-java:S1226‘"NIntroduce a new variable instead of reusing the parameter "heightMeasureSpec".(ìƒ‚
 =
 java:S1872!"'Use an "instanceof" comparison instead.(ö×
 v
 java:S1192!"`Define a constant instead of duplicating this literal "com.haibin.calendarview.WeekBar" 3 times.(ö×
-e
-java:S1226"NIntroduce a new variable instead of reusing the parameter "heightMeasureSpec".(±·Ó¾
 œ
 java:S1186T"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(‡†şÒşÿÿÿÿ
+e
+java:S1226"NIntroduce a new variable instead of reusing the parameter "heightMeasureSpec".(±·Ó¾
+e
+java:S1226‘"NIntroduce a new variable instead of reusing the parameter "heightMeasureSpec".(ìƒ‚

@@ -1,28 +1,27 @@
 
-Q	java:S125U"<This block of commented-out lines of code should be removed.(«ÔÀ
-R	java:S125Š"<This block of commented-out lines of code should be removed.(ı»–‚
-h
-java:S3457 "Q%n should be used in place of \n to produce the platform-specific line separator.(¶Å€Ô
-P
-java:S1854Â"9Remove this useless assignment to local variable "month".(ÙÆœş
-m
-java:S3457”"Q%n should be used in place of \n to produce the platform-specific line separator.(·ÎÖ©ûÿÿÿÿ
-W	java:S125‹"<This block of commented-out lines of code should be removed.(Ú¨íäıÿÿÿÿ
-E
-java:S1481Á")Remove this unused "year" local variable.(áŒí øÿÿÿÿ
-b
-java:S1192Œ"FDefine a constant instead of duplicating this literal "  -- " 3 times.(©™Ùˆûÿÿÿÿ
-W	java:S110("=This class has 10 parents which is greater than 5 authorized.(Ë¹›Œÿÿÿÿÿ
-T
-java:S1854Á"8Remove this useless assignment to local variable "year".(áŒí øÿÿÿÿ
-A
-java:S1481Â"*Remove this unused "month" local variable.(ÙÆœş
-^
-java:S1192"GDefine a constant instead of duplicating this literal "  --  " 6 times.(¿æ’
-Q	java:S125„"<This block of commented-out lines of code should be removed.(”ê—7
-W	java:S125ˆ"<This block of commented-out lines of code should be removed.(Ø„öõüÿÿÿÿ
-W	java:S125€"<This block of commented-out lines of code should be removed.(›ª·•ùÿÿÿÿ
-=	java:S131›""Add a default case to this switch.(öÛ«°şÿÿÿÿ
-R	java:S125Â"<This block of commented-out lines of code should be removed.(Í¥”©
-<	java:S131u""Add a default case to this switch.(öÛ«°şÿÿÿÿ
-=	java:S131¿""Add a default case to this switch.(×“¾ñùÿÿÿÿ
+^	java:S1103"=This class has 10 parents which is greater than 5 authorized.(Ë¹›Œÿÿÿÿÿ8ª×±ëä.
+o	java:S116G"SRename this field "mrl_tool" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(üİÕ8¯…Œìä.
+j
+java:S1192ë"GDefine a constant instead of duplicating this literal "  --  " 4 times.(áş×³úÿÿÿÿ8ÆŠ„ñä.
+i
+java:S1192ê"FDefine a constant instead of duplicating this literal "  -- " 3 times.(©™Ùˆûÿÿÿÿ8ÆŠ„ñä.
+D	java:S131ˆ""Add a default case to this switch.(öÛ«°şÿÿÿÿ8Çòä.
+S
+java:S1874Ü"0Remove this use of "getColor"; it is deprecated.(à¸ÿ°ÿÿÿÿÿ8Çòä.
+Y	java:S125à"<This block of commented-out lines of code should be removed.(ô ü·8Çòä.
+W
+java:S1854œ"9Remove this useless assignment to local variable "month".(ÙÆœş8Çòä.
+[
+java:S1854›"8Remove this useless assignment to local variable "year".(áŒí øÿÿÿÿ8Çòä.
+D	java:S131¥""Add a default case to this switch.(öÛ«°şÿÿÿÿ8Çòä.
+^	java:S125à"<This block of commented-out lines of code should be removed.(›ª·•ùÿÿÿÿ8Çòä.
+^	java:S125é"<This block of commented-out lines of code should be removed.(Ú¨íäıÿÿÿÿ8Çòä.
+o
+java:S3457ÿ"Q%n should be used in place of \n to produce the platform-specific line separator.(¶Å€Ô8Çòä.
+M
+java:S1874ó"0Remove this use of "getColor"; it is deprecated.(ÚÊÌ88Çòä.
+^	java:S125÷"<This block of commented-out lines of code should be removed.(ñ¦Šğøÿÿÿÿ8Çòä.
+L
+java:S1481›")Remove this unused "year" local variable.(áŒí øÿÿÿÿ8Çòä.
+H
+java:S1481œ"*Remove this unused "month" local variable.(ÙÆœş8Çòä.

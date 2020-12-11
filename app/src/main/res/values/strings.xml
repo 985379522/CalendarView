@@ -30,6 +30,7 @@
         <item>Change week start with mon</item>
         <item>Change week start with sat</item>
         <item>Change select mode：single/default</item>
+        <item>Expand/Shrink</item>
         <item>scrollToCurrentDay</item>
         <item>MonthViewShowMode：all</item>
         <item>MonthViewShowMode：only_current</item>

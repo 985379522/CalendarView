@@ -1,6 +1,13 @@
 
+¤
+java:S1186­"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(È‹˜Ñıÿÿÿÿ8Å²çÉá.
+w
+java:S1128"URemove this unused import 'com.haibin.calendarviewproject.colorful.ColorfulActivity'.(¿î¯ıüÿÿÿÿ8ØàÚéä.
+n
+java:S1128"QRemove this unused import 'com.haibin.calendarviewproject.simple.SimpleActivity'.(°ğ•î8ØàÚéä.
+Ÿ
+java:S1186™"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¡é††8ØàÚéä.
+l
+java:S1128"ORemove this unused import 'com.haibin.calendarviewproject.index.IndexActivity'.(‚œ8ØàÚéä.
 X	java:S125["<This block of commented-out lines of code should be removed.(‡Ú¡–8Å²çÉá.
 W	java:S110"=This class has 10 parents which is greater than 5 authorized.(”•Æıÿÿÿÿ
-¤
-java:S1186º"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(È‹˜Ñıÿÿÿÿ8Å²çÉá.
-D	java:S131š""Add a default case to this switch.(×“¾ñùÿÿÿÿ8Å²çÉá.

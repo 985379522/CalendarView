@@ -67,7 +67,6 @@ public class MainActivity extends BaseActivity implements
     TextView mTextCurrentDay;
 
     CalendarView mCalendarView;
-    CalendarLayout mLayout;
     LinearLayout mRoot;
     RelativeLayout mrl_tool;
 
@@ -97,7 +96,7 @@ public class MainActivity extends BaseActivity implements
         mCalendarHeight = dipToPx(this, 46);
         mRelativeTool = findViewById(R.id.rl_tool);
         mCalendarView = findViewById(R.id.calendarView);
-        mLayout = findViewById(R.id.calendarLayout);
+        mCalendarLayout = findViewById(R.id.calendarLayout);
         mRoot = findViewById(R.id.root);
         mrl_tool = findViewById(R.id.rl_tool);
         mTextCurrentDay = findViewById(R.id.tv_current_day);
@@ -129,110 +128,38 @@ public class MainActivity extends BaseActivity implements
             }
         });
 
-        //功能支持响应
+        //风格热插拔切换
         final DialogInterface.OnClickListener listener =
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         switch (which) {
                             case 0:         //Meizu
-                                mCalendarView.clearSchemeDate();
-                                initCustomScheme();
-                                resetSettings();
-                                mCalendarHeight = dipToPx(MainActivity.this, 55);
-                                mCalendarView.setCalendarItemHeight(mCalendarHeight);
-                                mCalendarView.setWeekView(MeizuWeekView.class);
-                                mCalendarView.setMonthView(MeiZuMonthView.class);
-                                mCalendarView.setWeekBar(CustomWeekBar.class);
+                                changeToMeizuStyle();
                                 break;
                             case 1:         //Custom
-                                mCalendarView.clearSchemeDate();
-                                initCustomScheme();
-                                resetSettings();
-                                mCalendarHeight = dipToPx(MainActivity.this, 55);
-                                mCalendarView.setCalendarItemHeight(mCalendarHeight);
-                                mCalendarView.setWeekView(CustomWeekView.class);
-                                mCalendarView.setMonthView(CustomMonthView.class);
-                                mCalendarView.setWeekBar(CustomWeekBar.class);
+                                changeToCustomStyle();
                                 break;
                             case 2:         //Colorful
-                                mCalendarView.clearSchemeDate();
-                                initNormalScheme();
-                                resetSettings();
-                                mCalendarHeight = dipToPx(MainActivity.this, 55);
-                                mCalendarView.setCalendarItemHeight(mCalendarHeight);
-                                mCalendarView.setWeekView(ColorfulWeekView.class);
-                                mCalendarView.setMonthView(ColorfulMonthView.class);
-                                mCalendarView.setWeekBar(CustomWeekBar.class);
+                                changeToColorfulStyle();
                                 break;
                             case 3:         //Full
-                                mCalendarView.clearSchemeDate();
-                                initFullScheme();
-                                resetSettings();
-                                mCalendarHeight = dipToPx(MainActivity.this, 85);
-                                mCalendarView.setCalendarItemHeight(mCalendarHeight);
-                                mCalendarView.setWeekView(FullWeekView.class);
-                                mCalendarView.setMonthView(FullMonthView.class);
-                                mCalendarView.setWeekBar(EnglishWeekBar.class);
+                                changeToFullStyle();
                                 break;
                             case 4:         //Mix
-                                mCalendarView.clearSchemeDate();
-                                initCustomScheme();
-                                resetSettings();
-                                mCalendarHeight = dipToPx(MainActivity.this, 55);
-                                mCalendarView.setCalendarPaddingLeft(100);
-                                mCalendarView.setCalendarItemHeight(mCalendarHeight);
-                                mCalendarView.setWeekView(MixWeekView.class);
-                                mCalendarView.setMonthView(MixMonthView.class);
-                                mCalendarView.setWeekBar(MixWeekBar.class);
-                                mCalendarView.postInvalidate();
+                                changeToMixStyle();
                                 break;
                             case 5:         //Index
-                                mCalendarView.clearSchemeDate();
-                                initNormalScheme();
-                                resetSettings();
-                                mCalendarHeight = dipToPx(MainActivity.this, 55);
-                                mCalendarView.setCalendarItemHeight(mCalendarHeight);
-                                mCalendarView.setWeekView(IndexWeekView.class);
-                                mCalendarView.setMonthView(IndexMonthView.class);
-                                mCalendarView.setWeekBar(CustomWeekBar.class);
+                                changeToIndexStyle();
                                 break;
                             case 6:         //Simple
-                                mCalendarView.clearSchemeDate();
-                                initNormalScheme();
-                                resetSettings();
-                                mCalendarHeight = dipToPx(MainActivity.this, 55);
-                                mCalendarView.setCalendarItemHeight(mCalendarHeight);
-                                mCalendarView.setWeekView(SimpleWeekView.class);
-                                mCalendarView.setMonthView(SimpleMonthView.class);
-                                mCalendarView.setWeekBar(EnglishWeekBar.class);
+                                changeToSimpleStyle();
                                 break;
                             case 7:         //Solar
-                                mCalendarView.clearSchemeDate();
-                                initSolarScheme();
-                                resetSettings();
-                                if (Build.VERSION.SDK_INT >= 21) {
-                                    getWindow().setStatusBarColor(getResources().getColor(R.color.solar_background));
-                                }
-                                mCalendarView.setBackgroundResource(R.color.solar_background);
-                                mLayout.setBackgroundResource(R.color.solar_background);
-                                //mRoot.setBackgroundResource(R.color.solar_background);
-                                mrl_tool.setBackgroundResource(R.color.solar_background);
-                                mCalendarHeight = dipToPx(MainActivity.this, 55);
-                                mCalendarView.setCalendarItemHeight(mCalendarHeight);
-                                mCalendarView.setWeekView(SolarWeekView.class);
-                                mCalendarView.setMonthView(SolarMonthView.class);
-                                mCalendarView.setWeekBar(SolarWeekBar.class);
+                                changeToSolarStyle();
                                 break;
                             case 8:         //Progress
-                                mCalendarView.clearSchemeDate();
-                                initProgressScheme();
-                                resetSettings();
-                                mCalendarHeight = dipToPx(MainActivity.this, 55);
-                                mCalendarView.setCalendarItemHeight(mCalendarHeight);
-                                mCalendarView.setWeekView(ProgressWeekView.class);
-                                mCalendarView.setMonthView(ProgressMonthView.class);
-                                mCalendarView.setWeekBar(CustomWeekBar.class);
+                                changeToProgressStyle();
                                 break;
                         }
                     }
@@ -267,6 +194,9 @@ public class MainActivity extends BaseActivity implements
         mTextMonthDay.setText(mCalendarView.getCurMonth() + "月" + mCalendarView.getCurDay() + "日");
         mTextLunar.setText("今日");
         mTextCurrentDay.setText(String.valueOf(mCalendarView.getCurDay()));
+
+        //根据天数不同选择视图
+        chooseSytleByDay();
     }
 
     @SuppressWarnings("unused")
@@ -277,7 +207,6 @@ public class MainActivity extends BaseActivity implements
         final int month = mCalendarView.getCurMonth();
 
         initNormalScheme();
-
     }
 
     //动态更新的响应
@@ -301,15 +230,22 @@ public class MainActivity extends BaseActivity implements
                 }
                 break;
             case 4:
-                mCalendarView.scrollToCurrent(true);
+                if(mCalendarLayout.isExpand()){
+                    mCalendarLayout.shrink();
+                }else{
+                    mCalendarLayout.expand();
+                }
                 break;
             case 5:
-                mCalendarView.setAllMode();
+                mCalendarView.scrollToCurrent(true);
                 break;
             case 6:
-                mCalendarView.setOnlyCurrentMode();
+                mCalendarView.setAllMode();
                 break;
             case 7:
+                mCalendarView.setOnlyCurrentMode();
+                break;
+            case 8:
                 mCalendarView.setFixMode();
                 break;
         }
@@ -613,9 +549,161 @@ public class MainActivity extends BaseActivity implements
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));
         }
         mCalendarView.setBackgroundResource(R.color.colorPrimary);
-        mLayout.setBackgroundResource(R.color.colorPrimary);
+        mCalendarLayout.setBackgroundResource(R.color.colorPrimary);
         //mRoot.setBackgroundResource(R.color.colorPrimary);
         mrl_tool.setBackgroundResource(R.color.colorPrimary);
         mCalendarView.setCalendarPaddingLeft(0);
+    }
+
+    private void changeToMeizuStyle() {
+        mCalendarView.clearSchemeDate();
+        initCustomScheme();
+        resetSettings();
+        mCalendarHeight = dipToPx(MainActivity.this, 55);
+        mCalendarView.setCalendarItemHeight(mCalendarHeight);
+        mCalendarView.setWeekView(MeizuWeekView.class);
+        mCalendarView.setMonthView(MeiZuMonthView.class);
+        mCalendarView.setWeekBar(CustomWeekBar.class);
+        mCalendarView.update();
+    }
+
+    private void changeToCustomStyle() {
+        mCalendarView.clearSchemeDate();
+        initCustomScheme();
+        resetSettings();
+        mCalendarHeight = dipToPx(MainActivity.this, 55);
+        mCalendarView.setCalendarItemHeight(mCalendarHeight);
+        mCalendarView.setWeekView(CustomWeekView.class);
+        mCalendarView.setMonthView(CustomMonthView.class);
+        mCalendarView.setWeekBar(CustomWeekBar.class);
+        mCalendarView.update();
+    }
+
+    private void changeToColorfulStyle() {
+        mCalendarView.clearSchemeDate();
+        initNormalScheme();
+        resetSettings();
+        mCalendarHeight = dipToPx(MainActivity.this, 55);
+        mCalendarView.setCalendarItemHeight(mCalendarHeight);
+        mCalendarView.setWeekView(ColorfulWeekView.class);
+        mCalendarView.setMonthView(ColorfulMonthView.class);
+        mCalendarView.setWeekBar(CustomWeekBar.class);
+        mCalendarView.update();
+    }
+
+    private void changeToFullStyle() {
+        initFullScheme();
+        resetSettings();
+        mCalendarHeight = dipToPx(MainActivity.this, 85);
+        mCalendarView.setCalendarItemHeight(mCalendarHeight);
+        mCalendarView.setWeekView(FullWeekView.class);
+        mCalendarView.setMonthView(FullMonthView.class);
+        mCalendarView.setWeekBar(EnglishWeekBar.class);
+        mCalendarView.update();
+    }
+
+    private void changeToMixStyle() {
+        mCalendarView.clearSchemeDate();
+        initCustomScheme();
+        resetSettings();
+        mCalendarHeight = dipToPx(MainActivity.this, 55);
+        mCalendarView.setCalendarPaddingLeft(100);
+        mCalendarView.setCalendarItemHeight(mCalendarHeight);
+        mCalendarView.setWeekView(MixWeekView.class);
+        mCalendarView.setMonthView(MixMonthView.class);
+        mCalendarView.setWeekBar(MixWeekBar.class);
+        mCalendarView.update();
+    }
+
+    private void changeToIndexStyle() {
+        mCalendarView.clearSchemeDate();
+        initNormalScheme();
+        resetSettings();
+        mCalendarHeight = dipToPx(MainActivity.this, 55);
+        mCalendarView.setCalendarItemHeight(mCalendarHeight);
+        mCalendarView.setWeekView(IndexWeekView.class);
+        mCalendarView.setMonthView(IndexMonthView.class);
+        mCalendarView.setWeekBar(CustomWeekBar.class);
+        mCalendarView.update();
+    }
+
+    private void changeToSimpleStyle() {
+        mCalendarView.clearSchemeDate();
+        initNormalScheme();
+        resetSettings();
+        mCalendarHeight = dipToPx(MainActivity.this, 55);
+        mCalendarView.setCalendarItemHeight(mCalendarHeight);
+        mCalendarView.setWeekView(SimpleWeekView.class);
+        mCalendarView.setMonthView(SimpleMonthView.class);
+        mCalendarView.setWeekBar(EnglishWeekBar.class);
+        mCalendarView.update();
+    }
+
+    /**
+     * 切换至星系风格
+     */
+    private void changeToSolarStyle() {
+        mCalendarView.clearSchemeDate();
+        initSolarScheme();
+        resetSettings();
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().setStatusBarColor(getResources().getColor(R.color.solar_background));
+        }
+        mCalendarView.setBackgroundResource(R.color.solar_background);
+        mCalendarLayout.setBackgroundResource(R.color.solar_background);
+        //mRoot.setBackgroundResource(R.color.solar_background);
+        mrl_tool.setBackgroundResource(R.color.solar_background);
+        mCalendarHeight = dipToPx(MainActivity.this, 55);
+        mCalendarView.setCalendarItemHeight(mCalendarHeight);
+        mCalendarView.setWeekView(SolarWeekView.class);
+        mCalendarView.setMonthView(SolarMonthView.class);
+        mCalendarView.setWeekBar(SolarWeekBar.class);
+        mCalendarView.update();
+    }
+
+    /**
+     * 切换至进度风格
+     */
+    private void changeToProgressStyle() {
+        mCalendarView.clearSchemeDate();
+        initProgressScheme();
+        resetSettings();
+        mCalendarHeight = dipToPx(MainActivity.this, 55);
+        mCalendarView.setCalendarItemHeight(mCalendarHeight);
+        mCalendarView.setWeekView(ProgressWeekView.class);
+        mCalendarView.setMonthView(ProgressMonthView.class);
+        mCalendarView.setWeekBar(CustomWeekBar.class);
+        mCalendarView.update();
+    }
+
+    /**
+     * 根据天数切换风格布局
+     */
+    private void chooseSytleByDay() {
+        int day = mCalendarView.getCurDay();
+        switch (day%7) {
+            case 0:
+                changeToCustomStyle();
+                break;
+            case 1:
+                changeToFullStyle();
+                break;
+            case 2:
+                changeToMixStyle();
+                break;
+            case 3:
+                changeToColorfulStyle();
+                break;
+            case 4:
+                changeToSolarStyle();
+                break;
+            case 5:
+                changeToIndexStyle();
+                break;
+            case 6:
+                changeToProgressStyle();
+                break;
+
+        }
     }
 }
