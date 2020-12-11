@@ -1,18 +1,18 @@
 
-
-java:S1186˜"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(™Î«şÿÿÿÿ
-n
-java:S3776ó"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.(´‰ûûÿÿÿÿ
 E
 java:S3740i"/Provide the parametrized type for this generic.(ñ•¦É
-K
-java:S3740¤"/Provide the parametrized type for this generic.(ƒĞ„´şÿÿÿÿ
-F
-java:S1066º"/Merge this if statement with the enclosing one.(ÍØÑË
-R	java:S125¼"<This block of commented-out lines of code should be removed.(Êşÿò
 h
 java:S3776b"RRefactor this method to reduce its Cognitive Complexity from 27 to the 15 allowed.(ş¢š½
 
 java:S1186‰"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ø´´øÿÿÿÿ
 e
 java:S4201²	"IRemove this unnecessary null check; "instanceof" returns false for nulls.( ¤‚¾úÿÿÿÿ
+n
+java:S3776ó"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.(´‰ûûÿÿÿÿ
+F
+java:S1066º"/Merge this if statement with the enclosing one.(ÍØÑË
+R	java:S125¼"<This block of commented-out lines of code should be removed.(Êşÿò
+K
+java:S3740¤"/Provide the parametrized type for this generic.(ƒĞ„´şÿÿÿÿ
+
+java:S1186˜"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(™Î«şÿÿÿÿ

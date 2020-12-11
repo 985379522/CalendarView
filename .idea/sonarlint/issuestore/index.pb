@@ -161,3 +161,9 @@ Iapp/src/main/java/com/haibin/calendarviewproject/solay/SolarWeekView.java,b\3\
 Mapp/src/main/java/com/haibin/calendarviewproject/pager/ViewPagerActivity.java,2\b\2bf9fa5ed774ac0dd775523420a2f260ae6bff69
 t
 Dapp/src/main/java/com/haibin/calendarviewproject/mix/MixWeekBar.java,c\5\c5d0f9ab5a63cefcbcb44aebc3904ccfe8a08fa1
+S
+#app/src/main/res/values/strings.xml,d\2\d2281fbb3027de2722081a53408dd77628bf080e
+V
+&app/src/main/res/values-zh/strings.xml,7\a\7aba09d3bcd65bd2cbba390040c9f826b5afa063
+Y
+)app/src/main/res/layout/activity_main.xml,7\6\76b07e40f24cce093536731477540f12e7da3cb6

@@ -198,8 +198,7 @@ public class MainActivity extends BaseActivity implements
         mTextLunar.setText("今日");
         mTextCurrentDay.setText(String.valueOf(mCalendarView.getCurDay()));
 
-        //根据天数不同选择视图
-        //chooseSytleByDay();
+
     }
 
     @SuppressWarnings("unused")
@@ -210,6 +209,9 @@ public class MainActivity extends BaseActivity implements
         final int month = mCalendarView.getCurMonth();
 
         initNormalScheme();
+
+        //根据天数不同选择视图，写在这里是因为这里是onDraw()最后调用的地方
+        chooseSytleByDay();
     }
 
     //动态更新的响应

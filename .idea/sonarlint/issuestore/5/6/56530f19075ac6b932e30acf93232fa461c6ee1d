@@ -1,8 +1,8 @@
 
-c
-java:S1128	"ARemove this unused import 'com.haibin.calendarview.CalendarUtil'.(‚ÓüÎşÿÿÿÿ8À¿Éîä.
-X	java:S125m"<This block of commented-out lines of code should be removed.(’‡‡Á8ÏÊ·îä.
-a
-java:S3358g"DExtract this nested ternary operation into an independent statement.(ºâ£ó8şÈ¶îä.
 Z
 java:S3358l"DExtract this nested ternary operation into an independent statement.(ºâ£ó
+a
+java:S3358g"DExtract this nested ternary operation into an independent statement.(ºâ£ó8şÈ¶îä.
+X	java:S125m"<This block of commented-out lines of code should be removed.(’‡‡Á8ÏÊ·îä.
+c
+java:S1128	"ARemove this unused import 'com.haibin.calendarview.CalendarUtil'.(‚ÓüÎşÿÿÿÿ8À¿Éîä.
